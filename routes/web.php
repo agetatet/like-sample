@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// 一覧
 Route::get('/', function () {
-    return view('welcome');
+    return view('list');
+});
+// 詳細
+Route::get('/{id}', function ($id) {
+    return view('detail', compact('id'));
 });
