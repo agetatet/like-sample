@@ -67,7 +67,7 @@ $(function () {
 
         // 既にお気に入りに設定されているか
         function isLiked(id) {
-            var indexPosition = likedIndexPosition(id);
+            let indexPosition = likedIndexPosition(id);
             // 含まれている
             if (likes && 0 <= indexPosition) {
                 return true;

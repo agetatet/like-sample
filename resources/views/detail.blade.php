@@ -28,9 +28,8 @@
         <div class="container">
             @if ($item)
                 <div class="mt-5 characterDetail">
-                    <div class="jsLikeButton" id="{{ $item['id'] }}">
-                        <!-- いいねアイコンはcssで設定。クラス名によって表示を変更 -->
-                    </div>
+                    @include('like')
+
                     <!-- 画像 -->
                     <div class="text-center">
                         <img src="{{ asset('img/character/'.$item['image']) }}" alt="{{ $item['name'] }}">
