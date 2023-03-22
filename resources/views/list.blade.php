@@ -22,9 +22,8 @@
                 @foreach($items as $item)
                     <a href="/{{ $item['id'] }}" class="col-12 col-md-6 mb-3">
                         <div class="card characterCard p-4">
-                            <div class="jsLikeButton" id="{{ $item['id'] }}">
-                                <!-- いいねアイコンはcssで設定。クラス名によって表示を変更 -->
-                            </div>
+                            <!-- いいねアイコン -->
+                            <like :id="{{ $item['id'] }}"></like>
 
                             <div class="d-flex mt-2">
                                 <!-- 画像 -->
