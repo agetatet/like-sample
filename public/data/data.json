@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name" : "ひよこ隊長", "image" : "hiyoko.png", "description" : "夏が大好きなひよこ隊長。<br>夏はよくフェスに行き、夏を堪能している。" },
+    { "id": 2, "name" : "フクロウ先生", "image" : "fukurou-sensei.png", "description" : "森の学校のフクロウ先生。<br>最近物忘れすることを本人は気にしている。" },
+    { "id": 3, "name" : "パンダ氏", "image" : "panda.png", "description" : "パンダ財閥の次男。<br>蝶ネクタイがトレードマーク。" },
+    { "id": 4, "name" : "おしゃべりオウム", "image" : "oumu.png", "description" : "おしゃべり大好きオウム君。<br>おしゃべりしすぎて、フクロウ先生に怒られる事が多い。" }
+]

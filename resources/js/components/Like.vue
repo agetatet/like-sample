@@ -1,12 +1,13 @@
 <template>
-    <div class="jsLikeButton" :class="className" @click="setLike($event)">
+    <div class="jsLikeButton" :class="getClassName" @click="setLike($event)">
         <!-- いいねアイコンはcssで設定。クラス名によって表示を変更 -->
     </div>
 </template>
 
 <script>
-    module.exports = {
-        delimiters: ['(%', '%)'], // Vue.js のデータバインディングは二重中括弧で blade と重複するため変更
+    export default {
+        name: "Like.vue",
+        props: ['id'],
         data: function() {
             return {
                 likes: [],
@@ -14,19 +15,16 @@
             }
         },
         created: function () {
-            // 画面表示の度にお気に入りの状態を更新
-            window.addEventListener('pageshow', this.init);
+            // お気に入りを取得して変数に保持
+            this.likes = this.getLikes();
+            this.setClassName();
         },
-        beforeDestroy() {
-            window.removeEventListener('pageshow', this.init);
+        computed: {
+            getClassName: function () {
+                return this.className;
+            }
         },
-        props: ['id'],
         methods: {
-            init() {
-                // お気に入りを取得して変数に保持
-                this.likes = this.getLikes();
-                this.setClassName();
-            },
             getLikes() {
                 let values = [];
                 let localStorageValues = JSON.parse(localStorage.getItem('likes'));
@@ -60,22 +58,26 @@
                 if (event) {
                     event.preventDefault();
                 }
+                // 一覧の他要素で変更されていることを考慮し、likesを再取得
+                // （もしくはemit等を使用してList・Detailから取得）
+                this.likes = this.getLikes();
+
                 // localStorageが存在している
                 if (this.likes) {
                     // 既にお気に入り
                     if (this.isLiked()) {
                         let indexPosition = this.likedIndexPosition();
                         // お気に入りから該当idを除去
-                        this.likes.splice(indexPosition, 1) ;
+                        this.likes.splice(indexPosition, 1);
                     } else {
                         // お気に入り追加
-                        this.likes.push(this.id);
+                        this.likes.splice(0, 0, this.id);
                     }
 
                 } else {
                     // localStorageが存在していない場合
                     // お気に入り追加
-                    this.likes.push(this.id);
+                    this.likes.splice(0, 0, this.id);
                 }
 
                 // 新しい値をlocalStorageに設定
@@ -87,7 +89,7 @@
     }
 </script>
 
-<style scoped>
+<style>
 .jsLikeButton {
     width: 50px;
     height: 50px;
@@ -100,5 +102,8 @@
 }
 .jsLikeButton img {
     width: 100%;
+}
+.jsLikeButton:hover {
+    cursor: pointer;
 }
 </style>
